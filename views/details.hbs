@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+</head>
+<body>
+
+{{!-- Navigation links --}}
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link " href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="/list">List my suscriptions</a>
+  </li>
+  <li class="nav-item">
+   <a class="nav-link active" href="/details">Details</a>
+  </li>
+</ul>
+ <script type="text/javascript">
+        window.onload=function(){
+        (function() {
+          var birth = "{{birth}}"
+          var result = document.getElementById('result');
+          var noData = document.getElementById('userEmpthy')
+          //If I don't have user data I don't show that div
+          birth.length > 0 ? result.hidden = false : result.hidden = true
+          //If there is no user / newsletter data, I indicate it
+          "{{empthy}}" === 'true'? noData.hidden = false : noData.hidden = true
+          })();
+            }
+
+      </script> 
+{{!Body}}
+    <div class="container mt-4">
+        <div class="mt-4 p-5 bg-light text-dark rounded">
+            <h1>Details</h1>
+            <p>Check the newsletters suscriptor details</p>
+        </div>
+    </div>
+
+    <div class="container mt-4 ">
+        <div class="card bg-light text-dark rounded" >            
+            <div class="card-header">Details newsletter</div>    
+            <div class="card-body">
+                <form action="getDetails" method="POST">
+                   
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value ="{{email}}" required>                        
+                    </div>
+                     <div class="mb-3">
+                        <label for="newsletter" class="form-label">Newsletter</label>
+                        <input type="text" class="form-control" id="newsletter" name="newsletter" value ="{{newsletter}}" required>                        
+                    </div>
+                     
+                    <button type="submit" class="btn bg-secondary text-white rounded">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+     <div class="container mt-4" id ="result">
+        <div class="mb-3">
+             <div class="card bg-light text-dark rounded" >            
+                <div class="card-header">Suscriptor</div>
+                 <div class="card-body">   
+                     <div class="mb-3">
+                        <label  class="form-label">Name: {{name}}</label>
+                        </div>
+                      <div class="mb-3">
+                        <label  class="form-label">Birth: {{birth}}</label>
+                      </div>
+                       <div class="mb-3">
+                             <label  class="form-label">Gender: {{gender}}</label>
+                       </div>
+                    </div> 
+                </div>
+            </div>                   
+        </div>
+     </div>
+     <div class="container mt-4" id ="userEmpthy">
+      <div class="mb-3">
+          <label  class="form-label">There is no data for the indicated newsletter / email</label>
+      </div>
+    </div>
+     
+</body>
+</html>
